@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home<img id="logo" width="40px" height="30px" src="../assets/imgs/Screenshot.png"></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="home">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown"
+                           pullingText="Pull to refresh"
+                           refreshingSpinner="circles"
+                           refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <h3>Friends 4 Events</h3>
+  <!--
+    <ion-slides autoplay="3000" pager="true" loop="true" speed="500">
+      <ion-slide *ngFor="let image of latestImgsArray" (click)="itemTapped($event, image.file_id, image.title, image.description, image.user_id, image.filename, image.time_added)">
+        <img class="slidingImg" src="http://media.mw.metropolia.fi/wbma/uploads/{{image.filename.split('.')[0]+'-tn320.png'}}">
+        <h5>{{image.description}}</h5>
+      </ion-slide>
+    </ion-slides>
+  -->
+  <ion-slides autoplay="" pager="true" loop="true" speed="500">
+    <ion-slide *ngFor="let image of latestImgsArray"
+               (click)="itemTapped($event, image.file_id, image.title, image.description, image.user_id, image.filename, image.time_added)">
+      <img class="slidingImg"
+           src="http://media.mw.metropolia.fi/wbma/uploads/{{image.filename.split('.')[0]+'-tn640.png'}}">
+    </ion-slide>
+  </ion-slides>
+  <div>
+
+    <div class="cards">
+      <ion-card>
+        <ion-card-header>
+          About us
+        </ion-card-header>
+        <ion-card-content>
+          Friends 4 Events is an application where you can find people with the same interests and meet them at event
+          where you both want to go.
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-header>
+          Who is it for?
+        </ion-card-header>
+        <ion-card-content>
+          Friends 4 Events is for everyone, especially for those who have rare interests and find it hard to find
+          company for those events.
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-header>
+          Our slogan
+        </ion-card-header>
+        <ion-card-content>
+          Share your experience.
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+  </div>
+  <div *ngIf="mediaProvider.logged">
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="search.title" placeholder="Title" name="searchtitle"></ion-input>
+    </ion-item>
+    <br>
+    <button ion-button block (click)="searchEvent()">Search events</button>
+  </div>
+</ion-content>
+

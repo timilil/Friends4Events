@@ -1,0 +1,36 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>viewprofile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-content padding class="background">
+    <form class="center">
+      <ion-avatar>
+        <label>
+          <div class="div">
+            <img src="http://media.mw.metropolia.fi/wbma/uploads/{{profilePicName}}" *ngIf="profilePicName != null">
+            <img src="../assets/imgs/profilepicture.png" *ngIf="profilePicName == null">
+          </div>
+        </label>
+      </ion-avatar>
+      <div class="information">
+
+        <h2>{{userName}}</h2>
+        <h3>{{userEmail}}</h3>
+        <h3>{{userId}}</h3>
+      </div>
+    </form>
+    <div class="information2">
+      <h2>{{userName}}</h2>
+      <h3>{{userEmail}}</h3>
+      <h3>{{userId}}</h3>
+    </div>
+  </ion-content>
+
+</ion-content>

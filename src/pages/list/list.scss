@@ -1,0 +1,42 @@
+page-list {
+
+}
+
+.flexcard {
+  display: flex;
+  flex-wrap: wrap;
+  height: 200px;
+}
+
+.image {
+  width: 30%;
+  height: 100%;
+}
+
+.cardcontent {
+  width: 70%;
+}
+
+.ellipsis {
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  height: 30rem;
+  -webkit-box-orient: vertical;
+}
+
+@media screen and (max-width: 460px) {
+  .image {
+    width: 100%;
+    height: 70%;
+  }
+
+  .cardcontent {
+    width: 100%;
+  }
+
+  .flexcard {
+    height: 300px;
+  }
+
+}
