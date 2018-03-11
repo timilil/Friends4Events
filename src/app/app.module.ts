@@ -27,6 +27,7 @@ import { EditorProvider } from '../providers/editor/editor';
 import {File} from '@ionic-native/file';
 import {AddeventPage} from '../pages/addevent/addevent';
 import {UploadprofilepicPage} from '../pages/uploadprofilepic/uploadprofilepic';
+import {UpdatePage} from '../pages/update/update';
 
 
 
@@ -46,7 +47,8 @@ import {UploadprofilepicPage} from '../pages/uploadprofilepic/uploadprofilepic';
     ReversePipe,
     TimePipe,
     AddeventPage,
-    UploadprofilepicPage
+    UploadprofilepicPage,
+    UpdatePage
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,8 @@ import {UploadprofilepicPage} from '../pages/uploadprofilepic/uploadprofilepic';
     LogoutPage,
     SearchedeventsPage,
     AddeventPage,
-    UploadprofilepicPage
+    UploadprofilepicPage,
+    UpdatePage
   ],
   providers: [
     StatusBar,

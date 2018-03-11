@@ -9,6 +9,7 @@ import {LoginPage} from '../pages/login/login';
 import {ProfilePage} from '../pages/profile/profile';
 import {LogoutPage} from '../pages/logout/logout';
 import {MediaProvider} from '../providers/media/media';
+import {UpdatePage} from '../pages/update/update';
 
 @Component({
   templateUrl: 'app.html'
@@ -29,7 +30,8 @@ export class MyApp {
       { title: 'Events', component: ListPage },
       { title: 'Login', component: LoginPage },
       { title: 'Profile', component: ProfilePage },
-      { title: 'Logout', component: LogoutPage }
+      { title: 'Logout', component: LogoutPage },
+      { title: 'Update', component: UpdatePage}
     ];
 
   }

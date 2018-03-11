@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {AlertController, LoadingController, NavController} from 'ionic-angular';
 import {MediaProvider} from '../../providers/media/media';
 import {EventPage} from '../event/event';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -19,7 +19,7 @@ export class HomePage {
   latestImgsArray: any;
   searchedImgsArray: any;
   searchedImgsTags: any = [];
-  oneMoreArray = [1, 2];
+  oneMoreArray = [];
   file: any;
 
   media: Media = {
@@ -44,11 +44,11 @@ export class HomePage {
     }, 2000);
   }
 
-  constructor(public navCtrl: NavController, private mediaProvider: MediaProvider) {
+  constructor(public navCtrl: NavController, private mediaProvider: MediaProvider, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
 
   }
 
-  searchEvent() {
+  /*searchEvent() {
     this.mediaProvider.searchMedia(this.search).subscribe(response => {
       //console.log(response);
       this.searchedImgsArray = response;
@@ -78,12 +78,15 @@ export class HomePage {
 
       //console.log(this.searchedImgsArray);
     });
-  }
+  }*/
 
-  setArray(searchedArray){
-    console.log(searchedArray);
-    this.navCtrl.push(SearchedeventsPage, {
-      search: searchedArray,
+  searchEvent() {
+    this.mediaProvider.searchMedia(this.search).subscribe(response => {
+      this.searchedImgsArray = response;
+      console.log(this.searchedImgsArray);
+      this.navCtrl.push(SearchedeventsPage, {
+        thing: this.searchedImgsArray
+      });
     });
   }
 
@@ -106,6 +109,16 @@ export class HomePage {
     if(localStorage.getItem('token') != null){
       this.mediaProvider.logged = true;
     }
+    /*
+    this.mediaProvider.getFileWithSpecificTag('event').subscribe(response => {
+      console.log(response);
+      this.latestImgsArray = response;
+    });
+    if (localStorage.getItem('token') != null) {
+      this.mediaProvider.logged = true;
+    }
+
+    **/
   }
 
   itemTapped(event, file_id, title, description, user_id, filename, time_added) {

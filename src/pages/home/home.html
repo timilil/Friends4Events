@@ -3,20 +3,19 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home<img id="logo" width="40px" height="30px" src="../assets/imgs/Screenshot.png"></ion-title>
+    <ion-title>Home<img id="logo" width="40px" height="30px" src="../assets/imgs/f4elogo.png"></ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="background" style="position: fixed;">
+<ion-content padding class="background">
   <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="arrow-dropdown"
-                           pullingText="Pull to refresh"
-                           refreshingSpinner="circles"
-                           refreshingText="Refreshing...">
+    <ion-refresher-content pullingIcon="none"
+                           style="opacity: 0.5"
+                           refreshingSpinner="circles">
     </ion-refresher-content>
   </ion-refresher>
 
-  <h3>Friends 4 Events</h3>
+  <h2>Friends 4 Events</h2>
   <!--
     <ion-slides autoplay="3000" pager="true" loop="true" speed="500">
       <ion-slide *ngFor="let image of latestImgsArray" (click)="itemTapped($event, image.file_id, image.title, image.description, image.user_id, image.filename, image.time_added)">
@@ -26,16 +25,19 @@
     </ion-slides>
   -->
   <ion-slides autoplay="" pager="true" loop="true" speed="500">
-    <ion-slide *ngFor="let image of latestImgsArray"
-               (click)="itemTapped($event, image.file_id, image.title, image.description, image.user_id, image.filename, image.time_added)">
-      <img class="slidingImg"
-           src="http://media.mw.metropolia.fi/wbma/uploads/{{image.filename.split('.')[0]+'-tn640.png'}}">
-    </ion-slide>
+    <div *ngFor="let image of latestImgsArray; let i = index;">
+      <ion-slide *ngIf="i < 5"
+                 (click)="itemTapped($event, image.file_id, image.title, image.description, image.user_id, image.filename, image.time_added)">
+        <img class="slidingImg"
+             src="http://media.mw.metropolia.fi/wbma/uploads/{{image.filename.split('.')[0]+'-tn320.png'}}">
+        <h5>{{image.description}}</h5>
+      </ion-slide>
+    </div>
   </ion-slides>
   <div>
 
     <div class="cards">
-      <ion-card style="margin-top:0">
+      <ion-card style="margin-top: 0">
         <ion-card-header>
           About us
         </ion-card-header>

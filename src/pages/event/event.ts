@@ -75,22 +75,18 @@ export class EventPage {
     });
   }
 
-  /*
-    checkIfLiked() {
-      this.mediaProvider.getAllLikes().subscribe(response => {
-        this.likesArray = response;
-        this.likesArray.forEach(data => {
-          if (data.file_id == this.fileID) {
-            this.isLiked = true;
-          }
-          else {
-            this.isLiked = false;
-          }
-        });
+
+  checkIfLiked() {
+    this.mediaProvider.getLikesByFileId(this.fileID).subscribe(response => {
+      this.likesArray = response;
+      this.likesArray.forEach(data => {
+        if (data.file_id == this.fileID) {
+          this.isLiked = true;
+        }
       });
-      console.log(this.isLiked);
-    }
-  */
+    });
+  }
+
 
   getCommentsAmountByFileId() {
     this.mediaProvider.getCommentsByFileId(this.fileID).subscribe(response => {
@@ -100,8 +96,67 @@ export class EventPage {
     });
   }
 
-    // NOT WORKING YET
-    itemClick() {
+  showUsersSigned() {
+    let actionsheet = this.actCtrl.create({
+      title: 'Signed users',
+    });
+    this.mediaProvider.getLikesByFileId(this.fileID).subscribe(response => {
+      //console.log(response);
+      this.likes = response;
+      console.log(this.likes);
+      this.likes = response;
+      this.likes.map(like => {
+        const userID = like.user_id;
+        this.mediaProvider.getUsernameByUserId(userID).subscribe(response => {
+          console.log(response);
+          //comment.user = response;
+          //this.signedUser = response['username'];
+          //this.signedUserEmail = response['email'];
+          //this.signedUserId = response['user_id'];
+          let button = {
+            text: response['username'],
+            handler: () => {
+              this.navCtrl.push(ViewprofilePage, {
+                email: response['email'],
+                username: response['username'],
+                user_id: response['user_id'],
+              });
+            },
+          };
+          actionsheet.addButton(button);
+        });
+      })
+    });
+    actionsheet.present();
+  }
+
+  redirectToUserThatPosted() {
+    this.navCtrl.push(ViewprofilePage, {
+      username: this.userName,
+      user_id: this.userID,
+      email: this.userWhoPostedEmail,
+    });
+  }
+
+  like() {
+    this.mediaProvider.like(this.fileID).subscribe(response => {
+      console.log(response);
+      this.isLiked = true;
+      this.navCtrl.last()._didLoad();
+    });
+  }
+
+  unlike() {
+    this.mediaProvider.unLike(this.fileID).subscribe(response => {
+      console.log(response);
+      this.isLiked = false;
+      this.navCtrl.last()._didLoad();
+    });
+  }
+
+  /*
+
+  itemClick() {
       this.getLikesByFileID();
       console.log("1 this"+this.isLiked);
       for (let i = 0; i < this.likes.length; i++) {
@@ -135,91 +190,15 @@ export class EventPage {
       console.log("4"+this.isLiked);
     }
 
+  * */
 
-  showUsersSigned() {
-    let actionsheet = this.actCtrl.create({
-      title: 'Signed users',
-    });
-    this.mediaProvider.getLikesByFileId(this.fileID).subscribe(response => {
-      //console.log(response);
-      this.likes = response;
-      console.log(this.likes);
-      this.likes = response;
-      this.likes.map(like => {
-        const userID = like.user_id;
-        this.mediaProvider.getUsernameByUserId(userID).subscribe(response => {
-          console.log(response);
-          //comment.user = response;
-          //this.signedUser = response['username'];
-          //this.signedUserEmail = response['email'];
-          //this.signedUserId = response['user_id'];
-          let button = {
-            text: response['username'],
-            handler: () => {
-              this.navCtrl.push(ViewprofilePage, {
-                email: response['email'],
-                username: response['username'],
-                user_id: response['user_id'],
-              });
-            },
-          };
-          actionsheet.addButton(button);
-        });
-      })
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
 
-      /*for (let i = 0; i < this.likes.length; i++) {
-        this.mediaProvider.getUsernameByUserId(this.likes[i].user_id).
-          subscribe(response => {
-            console.log(response);
-            this.signedUser = response['username'];
-            this.signedUserEmail = response['email'];
-            this.signedUserId = response['user_id'];
-            let button = {
-              text: this.signedUser,
-              handler: () => {
-                console.log(i);
-                this.navCtrl.push(ViewprofilePage, {
-                  email: this.signedUserEmail,
-                  username: this.signedUser,
-                  user_id: this.signedUserId,
-                });
-              },
-            };
-            actionsheet.addButton(button);
-          });
-      }*/
-    });
-
-    /*this.mediaProvider.getLikesByFileId(this.fileID).subscribe(response => {
-      //console.log(response);
-      this.likes = response;
-      console.log(this.likes);
-      for (let userNames of this.likes) {
-        this.mediaProvider.getUsernameByUserId(userNames.user_id).subscribe(response => {
-            console.log(response);
-            alert.addButton({
-              text: response['username']
-            });
-        });
-      }
-    });*/
-
-    /*alert.addButton({
-      text: 'Username'
-    });
-    alert.addButton({
-      text: 'Username'
-    });*/
-
-    actionsheet.present();
-  }
-
-  redirectToUserThatPosted() {
-    this.navCtrl.push(ViewprofilePage, {
-      username: this.userName,
-      user_id: this.userID,
-      email: this.userWhoPostedEmail,
-    });
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
   }
 
   ionViewDidLoad() {
@@ -236,7 +215,7 @@ export class EventPage {
     this.getUsernameByUserID();
     this.getLikesByFileID();
     this.getCommentsAmountByFileId();
-    //this.checkIfLiked();
+    this.checkIfLiked();
     this.getProfilePic()
   }
 

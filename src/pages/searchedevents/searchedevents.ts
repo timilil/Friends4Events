@@ -17,36 +17,39 @@ import {MediaProvider} from '../../providers/media/media';
 export class SearchedeventsPage {
 
   response: any;
-  description: string;
-  file_id: number;
-  filename: string;
-  tag: string;
-  tag_id: number;
-  title: string;
-  user_id: string;
-  time_added: string;
-  searchTag: string;
-  searchedImgsArray: any;
-  anotherArray: any = [];
+  searchTag: any;
+  thing: any;
+  searchedFiles = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private mediaProvider: MediaProvider) {
-    this.searchedImgsArray = this.navParams.get('search')
+    this.response = navParams.get('response');
+    this.searchTag = this.navParams.get('searchTag');
+    this.thing = this.navParams.get('thing');
+  }
+
+  getFiles() {
+    this.thing.forEach(data => {
+      this.mediaProvider.tagsByFileId(data.file_id).subscribe(response => {
+        if (response != '') {
+          if (response[0].tag == 'event'){
+            console.log(response[0].file_id);
+            this.mediaProvider.getFileByFileId(response[0].file_id).subscribe(response => {
+              this.searchedFiles.push(response);
+              console.log(this.searchedFiles);
+            });
+          }
+        }
+      });
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchedeventsPage');
-    console.log(this.searchedImgsArray);
-    this.searchedImgsArray.forEach(search => {
-      console.log(search);
-      const searched = search;
-      console.log(searched.tag);
-    });
+    console.log(this.thing);
+    //console.log(this.response);
+    //console.log(this.searchTag);
+    this.getFiles();
 
   }
 
-  loopArray(){
-    for (let i; i < this.searchedImgsArray; i++){
-      console.log(this.searchedImgsArray[i]);
-    }
-  }
 }

@@ -32,7 +32,7 @@
             <img class="avatarImg" src="../assets/imgs/profilepicture.png" *ngIf="profilePicName == null">
           </ion-avatar>
           <h2>{{comment.user.username}}</h2>
-          <p>{{comment.time_added | date:'dd/MM/yy hh:mm'}}</p>
+          <p>{{comment.time_added | date:'dd/MM/yy hh:mm a'}}</p>
         </ion-item>
         <ion-card-content>
           {{comment.comment}}

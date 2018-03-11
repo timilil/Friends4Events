@@ -11,8 +11,10 @@ import {EventPage} from '../event/event';
 })
 export class ListPage {
   filesArray: any;
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  selectedItem: any;
+  searchItems: any;
+  //icons: string[];
+  //items: Array<{title: string, note: string, icon: string}>;
 
 
   doRefresh(refresher) {
@@ -25,8 +27,28 @@ export class ListPage {
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public mediaProvider: MediaProvider) {
-
+    this.selectedItem = navParams.get('item');
   }
+
+  getItems(ev: any) {
+
+    this.initializeItems();
+
+    let val = ev.target.value;
+
+    if (val && val.trim() != '') {
+
+      this.searchItems = this.searchItems.filter((item) => {
+        console.log(item.title);
+        return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      });
+    }
+  }
+
+  initializeItems() {
+    this.searchItems = this.filesArray;
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad EventsList');
     /*if (localStorage.getItem('token') != null) {
@@ -39,6 +61,7 @@ export class ListPage {
         this.mediaProvider.getFileWithSpecificTag('event').subscribe(response => {
           console.log(response);
           this.filesArray = response;
+          this.initializeItems();
         });
       /*}, (error: HttpErrorResponse) => {
         console.log(error);

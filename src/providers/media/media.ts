@@ -14,6 +14,7 @@ export class MediaProvider {
 
   username: string;
   password: string;
+  email: string;
   status: string;
   isLiked: boolean;
   apiUrl = 'http://media.mw.metropolia.fi/wbma';
@@ -91,6 +92,14 @@ export class MediaProvider {
       settings);
   }
 
+  updateUserData(data) {
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token',
+        localStorage.getItem('token')),
+    };
+    return this.http.put(this.apiUrl + '/users', data, settings)
+  }
+
   getUploadData(formData) {
     const settings = {
       headers: new HttpHeaders().set('x-access-token',
@@ -110,6 +119,10 @@ export class MediaProvider {
   }
 
   getFileByFileId(fileId){
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token',
+        localStorage.getItem('token')),
+    };
     return this.http.get(this.apiUrl + '/media/'+fileId);
   }
 
@@ -219,13 +232,15 @@ export class MediaProvider {
     return this.http.post(this.apiUrl + '/media/search', media, settings);
   }
 
-  tagsByFileId(id) {
-    return this.http.get(this.apiUrl + '/tags/file/'+ id);
-  }
-
   searchTag (tag) {
     console.log(tag);
     return this.http.get(this.apiUrl + '/tags/'+ tag);
   }
+
+  tagsByFileId(id) {
+    return this.http.get(this.apiUrl + '/tags/file/'+ id);
+  }
+
+
 
 }

@@ -14,6 +14,13 @@
 
 
 <ion-content padding class="background">
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="none"
+                           style="opacity: 0.5"
+                           refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
   <div class="center2">
     <ion-card>
 
@@ -27,7 +34,7 @@
           </label>
         </ion-avatar>
         <h2>{{userName}}</h2>
-        <p>{{timeAdded | date:'dd/MM/yy hh:mm'}}</p>
+        <p>{{timeAdded | date:'dd/MM/yy hh:mm a'}}</p>
       </ion-item>
 
       <img class="eventImage" src="http://media.mw.metropolia.fi/wbma/uploads/{{fileName.split('.')[0]+'-tn320.png'}}">
@@ -38,15 +45,19 @@
       </ion-card-content>
       <ion-row>
         <ion-col>
-          <button ion-button icon-left clear small (click)="itemClick()">
-            <ion-icon name="thumbs-up"></ion-icon>
-            <div>{{likeamount}} Sign up for event</div>
+          <button ion-button icon-left clear small (click)="like()" *ngIf="!isLiked">
+            <ion-icon name="checkbox"></ion-icon>
+            <div>Sign up for event</div>
+          </button>
+          <button ion-button icon-left clear small (click)="unlike()" *ngIf="isLiked">
+            <ion-icon name="checkbox"></ion-icon>
+            <div>Sign out from event</div>
           </button>
         </ion-col>
         <ion-col>
           <button ion-button icon-left clear small (click)="showUsersSigned()">
             <ion-icon name="contacts"></ion-icon>
-            <div>List of signed people</div>
+            <div>List of signed people ({{likeamount}})</div>
           </button>
         </ion-col>
         <ion-col>
