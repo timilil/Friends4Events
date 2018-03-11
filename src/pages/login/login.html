@@ -15,20 +15,25 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background">
   <!--input [(ngModel)]="mediaProvider.username" name="username"-->
-  <ion-item>
-    <ion-input type="text" [(ngModel)]="mediaProvider.username" placeholder="Username" name="username"></ion-input>
-  </ion-item>
-  <br>
-  <ion-item>
-    <ion-input type="password" [(ngModel)]="mediaProvider.password" placeholder="Password" name="password"></ion-input>
-  </ion-item>
-  <!--input type="password" [(ngModel)]="mediaProvider.password" name="password"-->
-  <br>
-  <button ion-button block (click)="login()">Login</button>
-  <br>
-  <button ion-button block (click)="openPage()">Register</button>
+  <div class="login">
+    <div class="logincenter">
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="mediaProvider.username" placeholder="Username" name="username"></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-input type="password" [(ngModel)]="mediaProvider.password" placeholder="Password"
+                   name="password"></ion-input>
+      </ion-item>
+      <!--input type="password" [(ngModel)]="mediaProvider.password" name="password"-->
+      <br>
+      <button ion-button block (click)="login()">Login</button>
+      <br>
+      <button ion-button block (click)="openPage()">Register</button>
+    </div>
+  </div>
 </ion-content>
 
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

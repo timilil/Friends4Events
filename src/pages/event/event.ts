@@ -43,6 +43,8 @@ export class EventPage {
   signedUser: string;
   signedUserId: number;
   signedUserEmail: string;
+  profilePic: any;
+  profilePicName: string;
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
@@ -229,17 +231,36 @@ export class EventPage {
     //console.log(this.fileID);
     //console.log(this.title);
     //console.log(this.description);
-    //console.log(this.userID);
+    console.log(this.userID);
     //console.log(this.fileName);
     this.getUsernameByUserID();
     this.getLikesByFileID();
     this.getCommentsAmountByFileId();
     //this.checkIfLiked();
+    this.getProfilePic()
   }
 
   itemTapped(event) {
     this.navCtrl.push(CommentsPage, {
       file_id: this.fileID,
+    });
+  }
+
+  getProfilePic() {
+    this.mediaProvider.getUsernameByUserId(this.userID).subscribe(response => {
+      console.log(response['username']);
+      this.mediaProvider.getFileWithSpecificTag(response['username']).
+        subscribe(response => {
+          console.log(response);
+          this.profilePic = response;
+          if (this.profilePic.length != 0) {
+            console.log(this.profilePic);
+            console.log(this.profilePic[0].file_id);
+            console.log(this.profilePic[0].filename);
+            this.profilePicName = this.profilePic[0].filename;
+            console.log(this.profilePicName);
+          }
+        });
     });
   }
 

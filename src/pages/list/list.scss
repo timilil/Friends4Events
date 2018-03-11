@@ -5,12 +5,11 @@ page-list {
 .flexcard {
   display: flex;
   flex-wrap: wrap;
-  height: 200px;
 }
 
 .image {
   width: 30%;
-  height: 100%;
+  height: 30%;
 }
 
 .cardcontent {
@@ -20,8 +19,9 @@ page-list {
 .ellipsis {
   width: 100%;
   overflow: hidden;
+  text-overflow: ellipsis;
   display: -webkit-box;
-  height: 30rem;
+  -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
 }
 
@@ -35,8 +35,5 @@ page-list {
     width: 100%;
   }
 
-  .flexcard {
-    height: 300px;
-  }
 
 }

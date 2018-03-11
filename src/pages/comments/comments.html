@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background">
   <form (submit)="postNewComment()">
     <ion-item>
       <ion-input type="text" [(ngModel)]="comment.comment" placeholder="Write a comment" name="comment"></ion-input>
@@ -28,10 +28,11 @@
       <div *ngIf="comment.user">
         <ion-item class="commentAvatar" (click)="redirectToUserThatPosted($event, comment.user.username, comment.user.email, comment.user.user_id)">
           <ion-avatar item-start>
-            <img class="avatarImg" src="../assets/imgs/Screenshot.png">
+            <img class="avatarImg" src="http://media.mw.metropolia.fi/wbma/uploads/{{profilePicName}}" *ngIf="profilePicName != null">
+            <img class="avatarImg" src="../assets/imgs/profilepicture.png" *ngIf="profilePicName == null">
           </ion-avatar>
           <h2>{{comment.user.username}}</h2>
-          <p>November 5, 1955</p>
+          <p>{{comment.time_added | date:'dd/MM/yy hh:mm'}}</p>
         </ion-item>
         <ion-card-content>
           {{comment.comment}}

@@ -22,6 +22,9 @@ export class CommentsPage {
   commentsArray: any;
   userName: any;
   userID: number;
+  allComments: any = [];
+  profilePic: any;
+  profilePicName: string;
 
   comment: Comment = {
     file_id: null,
@@ -37,28 +40,51 @@ export class CommentsPage {
     this.comment.file_id = this.fileID;
     console.log(this.fileID);
     this.getCommentsByFileId();
+    this.getProfilePicByUserName();
   }
 
   getCommentsByFileId () {
     this.mediaProvider.getCommentsByFileId(this.fileID).subscribe(response => {
-      console.log(response);
+      //console.log(response);
       this.commentsArray = response;
       this.commentsArray.map(comment => {
         const userID = comment.user_id;
-        console.log(userID);
+        //console.log(userID);
         //this.allUserIds.push(userID);
         this.mediaProvider.getUsernameByUserId(userID).subscribe(response => {
-          console.log(response);
+          //console.log(response);
           comment.user = response;
+          this.allComments.push(comment.user.username);
         });
-      }/*,
+      }
+      /*,
         error => {
           console.log(error);
         },
         () => {
           console.log(this.commentsArray[0].user);
         }*/);
-      console.log(this.commentsArray);
+      //console.log(this.commentsArray);
+    });
+  }
+
+  // MIKSI TÄMÄ EI TOIMI
+  getProfilePicByUserName (){
+    console.log(this.allComments);
+    this.allComments.map(profile => {
+      console.log(profile);
+      this.mediaProvider.getFileWithSpecificTag(profile).
+        subscribe(response => {
+          console.log(response);
+          this.profilePic = response;
+          if (this.profilePic.length != 0) {
+            console.log(this.profilePic);
+            console.log(this.profilePic[0].file_id);
+            console.log(this.profilePic[0].filename);
+            this.profilePicName = this.profilePic[0].filename;
+            console.log(this.profilePicName);
+          }
+        });
     });
   }
 

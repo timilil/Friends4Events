@@ -14,34 +14,38 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background">
   <form (submit)="register()">
-    <ion-item>
-      <ion-input type="text" [(ngModel)]="user.username" placeholder="Username" name="username"></ion-input>
-    </ion-item>
-    <br>
-    <ion-item>
-      <ion-input type="password" [(ngModel)]="user.password" placeholder="Password" name="password"></ion-input>
-    </ion-item>
-    <br>
-    <ion-item>
-      <ion-input type="text" [(ngModel)]="user.email" placeholder="Email" name="email"></ion-input>
-    </ion-item>
-    <br>
-    <ion-item>
-      <ion-input type="text" [(ngModel)]="user.full_name" placeholder="Full name" name="fullname"></ion-input>
-    </ion-item>
-    <br>
-    <button ion-button block type="submit">Register</button>
+    <div class="login">
+      <div class="logincenter">
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="user.username" placeholder="Username" name="username"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-input type="password" [(ngModel)]="user.password" placeholder="Password" name="password"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="user.email" placeholder="Email" name="email"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="user.full_name" placeholder="Full name" name="fullname"></ion-input>
+        </ion-item>
+        <br>
+        <button ion-button block type="submit">Register</button>
 
-    <!--input [(ngModel)]="user.username" placeholder="Username" name="username">
-    <br>
-    <input [(ngModel)]="user.password" placeholder="Password" name="password">
-    <br>
-    <input [(ngModel)]="user.email" placeholder="Email" name="email">
-    <br>
-    <input [(ngModel)]="user.full_name" placeholder="Full Name" name="fullname">
-    <br>
-    <button type="submit">Register</button-->
+        <!--input [(ngModel)]="user.username" placeholder="Username" name="username">
+        <br>
+        <input [(ngModel)]="user.password" placeholder="Password" name="password">
+        <br>
+        <input [(ngModel)]="user.email" placeholder="Email" name="email">
+        <br>
+        <input [(ngModel)]="user.full_name" placeholder="Full Name" name="fullname">
+        <br>
+        <button type="submit">Register</button-->
+      </div>
+    </div>
   </form>
 </ion-content>

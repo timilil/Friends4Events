@@ -20,6 +20,15 @@ import {LogoutPage} from '../pages/logout/logout';
 import {SearchedeventsPage} from '../pages/searchedevents/searchedevents';
 import {ReversePipe} from '../pipes/reverse/reverse';
 import {TimePipe} from '../pipes/time/time';
+import { Camera } from '@ionic-native/camera';
+import { Transfer } from '@ionic-native/transfer';
+import { FilePath } from '@ionic-native/file-path'
+import { EditorProvider } from '../providers/editor/editor';
+import {File} from '@ionic-native/file';
+import {AddeventPage} from '../pages/addevent/addevent';
+import {UploadprofilepicPage} from '../pages/uploadprofilepic/uploadprofilepic';
+
+
 
 @NgModule({
   declarations: [
@@ -35,7 +44,9 @@ import {TimePipe} from '../pipes/time/time';
     LogoutPage,
     SearchedeventsPage,
     ReversePipe,
-    TimePipe
+    TimePipe,
+    AddeventPage,
+    UploadprofilepicPage
   ],
   imports: [
     BrowserModule,
@@ -54,14 +65,21 @@ import {TimePipe} from '../pipes/time/time';
     CommentsPage,
     ViewprofilePage,
     LogoutPage,
-    SearchedeventsPage
+    SearchedeventsPage,
+    AddeventPage,
+    UploadprofilepicPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MediaProvider,
-    HttpClient
+    HttpClient,
+    Camera,
+    EditorProvider,
+    File,
+    Transfer,
+    FilePath
   ]
 })
 export class AppModule {}

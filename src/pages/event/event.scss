@@ -2,6 +2,11 @@ page-event {
 
 }
 
+.center2 {
+  display: flex;
+  justify-content: center;
+}
+
 .eventImage {
   width: 100%;
 }
@@ -10,10 +15,4 @@ page-event {
 
 }
 
-@media screen and (max-width: 480px){
-  .ionAvatar {
-    width: 20%;
-    height: 20%;
-  }
-}
 

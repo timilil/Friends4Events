@@ -1,3 +1,9 @@
 page-viewprofile {
 
 }
+
+@media screen and (max-width: 480px) {
+  .profile-avatar2 {
+    margin: 2rem 0 0 0;
+  }
+}

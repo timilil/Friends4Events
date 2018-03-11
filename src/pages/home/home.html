@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="home">
+<ion-content padding class="background" style="position: fixed;">
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="arrow-dropdown"
                            pullingText="Pull to refresh"
@@ -35,12 +35,12 @@
   <div>
 
     <div class="cards">
-      <ion-card>
+      <ion-card style="margin-top:0">
         <ion-card-header>
           About us
         </ion-card-header>
         <ion-card-content>
-          Friends 4 Events is an application where you can find people with the same interests and meet them at event
+          Friends 4 Events is an application where you can find people with the same interests and meet them at events
           where you both want to go.
         </ion-card-content>
       </ion-card>
