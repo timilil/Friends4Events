@@ -44,6 +44,7 @@ export class CommentsPage {
   }
 
   getCommentsByFileId () {
+    let allcomments: any;
     this.mediaProvider.getCommentsByFileId(this.fileID).subscribe(response => {
       //console.log(response);
       this.commentsArray = response;
@@ -54,7 +55,12 @@ export class CommentsPage {
         this.mediaProvider.getUsernameByUserId(userID).subscribe(response => {
           //console.log(response);
           comment.user = response;
-          this.allComments.push(comment.user.username);
+          //console.log(comment.user.username);
+            this.mediaProvider.getFileWithSpecificTag(comment.user.username).
+              subscribe(response => {
+                console.log(response);
+                comment.user.tag = response[0];
+              });
         });
       }
       /*,
@@ -64,7 +70,7 @@ export class CommentsPage {
         () => {
           console.log(this.commentsArray[0].user);
         }*/);
-      //console.log(this.commentsArray);
+      console.log(this.commentsArray);
     });
   }
 

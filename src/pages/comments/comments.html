@@ -28,8 +28,8 @@
       <div *ngIf="comment.user">
         <ion-item class="commentAvatar" (click)="redirectToUserThatPosted($event, comment.user.username, comment.user.email, comment.user.user_id)">
           <ion-avatar item-start>
-            <img class="avatarImg" src="http://media.mw.metropolia.fi/wbma/uploads/{{profilePicName}}" *ngIf="profilePicName != null">
-            <img class="avatarImg" src="../assets/imgs/profilepicture.png" *ngIf="profilePicName == null">
+            <img class="avatarImg" src="http://media.mw.metropolia.fi/wbma/uploads/{{comment.user.tag.filename}}" *ngIf="comment.user.tag != null">
+            <img class="avatarImg" src="../assets/imgs/profilepicture.png" *ngIf="comment.user.tag == null">
           </ion-avatar>
           <h2>{{comment.user.username}}</h2>
           <p>{{comment.time_added | date:'dd/MM/yy hh:mm a'}}</p>
