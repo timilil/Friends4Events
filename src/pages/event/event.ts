@@ -53,6 +53,7 @@ export class EventPage {
     this.fileName = this.navParams.get('filename');
     this.timeAdded = this.navParams.get('time_added');
     this.fullName = this.navParams.get('fullname');
+    this.loggedUserId = this.navParams.get('loggeduserid')
   }
 
   getUsernameByUserID() {
@@ -77,7 +78,7 @@ export class EventPage {
     this.mediaProvider.getLikesByFileId(this.fileID).subscribe(response => {
       this.likesArray = response;
       this.likesArray.forEach(data => {
-        if (data.user_id == this.userID) {
+        if (data.user_id == this.loggedUserId) {
           this.isLiked = true;
         }
       });
@@ -212,7 +213,7 @@ export class EventPage {
     console.log(this.fileID);
     //console.log(this.title);
     //console.log(this.description);
-    console.log("moi"+this.userID);
+    //console.log(this.userID);
     //console.log(this.fileName);
     this.getUsernameByUserID();
     this.getLikesByFileID();

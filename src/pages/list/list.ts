@@ -15,6 +15,7 @@ export class ListPage {
   searchItems: any;
   //icons: string[];
   //items: Array<{title: string, note: string, icon: string}>;
+  loggedUserId: number;
 
 
   doRefresh(refresher) {
@@ -51,28 +52,16 @@ export class ListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EventsList');
-    /*if (localStorage.getItem('token') != null) {
-      this.mediaProvider.getUserData().subscribe(response => {
-        console.log('Welcome ' + response['full_name']);*/
-        /*this.mediaProvider.getNewFiles().subscribe(response => {
-          console.log(response);
-          this.filesArray = response;
-        });*/
-        this.mediaProvider.getFileWithSpecificTag('event').subscribe(response => {
-          console.log(response);
-          this.filesArray = response;
-          this.initializeItems();
-        });
-      /*}, (error: HttpErrorResponse) => {
-        console.log(error);
-        //this.router.navigate(['login']);
-        //this.navCtrl.setRoot(LoginPage)
-      });
-    } else {
-      console.log('moi');
-      //this.router.navigate(['login']);
-      //this.navCtrl.setRoot(LoginPage);
-    }*/
+    this.mediaProvider.getFileWithSpecificTag('event').subscribe(response => {
+      console.log(response);
+      this.filesArray = response;
+      this.initializeItems();
+    });
+    this.mediaProvider.getUserData().subscribe(response => {
+      console.log(response);
+      this.loggedUserId = response['user_id'];
+      console.log(this.loggedUserId);
+    });
   }
 
   itemTapped(event, item, file_id, title, description, user_id, filename, time_added) {
@@ -85,7 +74,8 @@ export class ListPage {
         description: description,
         user_id: user_id,
         filename: filename,
-        time_added: time_added
+        time_added: time_added,
+        loggeduserid: this.loggedUserId
       });
     } else {
       this.navCtrl.setRoot(LoginPage);

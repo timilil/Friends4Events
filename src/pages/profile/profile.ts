@@ -328,6 +328,7 @@ export class ProfilePage {
       user_id: user_id,
       filename: filename,
       time_added: time_added,
+      loggeduserid: this.currentUserId
     });
   }
 
