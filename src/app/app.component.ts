@@ -30,8 +30,7 @@ export class MyApp {
       { title: 'Events', component: ListPage },
       { title: 'Login', component: LoginPage },
       { title: 'Profile', component: ProfilePage },
-      { title: 'Logout', component: LogoutPage },
-      { title: 'Update', component: UpdatePage}
+      { title: 'Logout', component: LogoutPage }
     ];
 
   }

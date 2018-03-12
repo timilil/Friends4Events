@@ -23,6 +23,7 @@ import {EditorProvider} from '../../providers/editor/editor';
 import {HomePage} from '../home/home';
 import {AddeventPage} from '../addevent/addevent';
 import {UploadprofilepicPage} from '../uploadprofilepic/uploadprofilepic';
+import {UpdatePage} from '../update/update';
 
 /**
  * Generated class for the ProfilePage page.
@@ -296,7 +297,13 @@ export class ProfilePage {
   }
 
   redirectToProfilePicUploadPage() {
-    this.navCtrl.push(UploadprofilepicPage);
+    this.navCtrl.push(UploadprofilepicPage, {
+      username: this.userName
+    });
+  }
+
+  redirectToUpdatePage(){
+    this.navCtrl.push(UpdatePage);
   }
 
   ionViewDidLoad() {

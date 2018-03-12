@@ -13,9 +13,11 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background">
   <h2>Upload your profile picture here</h2>
   <button ion-button (click)="presenActionSheer()">Take photo</button>
   <button ion-button (click)="upload()">Upload</button>
-  <canvas #myCanvas></canvas>
+  <ion-card>
+    <canvas #myCanvas></canvas>
+  </ion-card>
 </ion-content>

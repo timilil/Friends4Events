@@ -18,10 +18,9 @@
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
 
   <ion-list>
-    <ion-item *ngFor="let files of searchItems"
-              (click)="itemTapped($event, item, files.file_id, files.title, files.description, files.user_id, files.filename, files.time_added)">
 
-      <ion-card class="flexcard">
+      <ion-card class="flexcard" *ngFor="let files of searchItems | reverse"
+                (click)="itemTapped($event, item, files.file_id, files.title, files.description, files.user_id, files.filename, files.time_added)">
         <img class="image"
              src="http://media.mw.metropolia.fi/wbma/uploads/{{files.filename.split('.')[0]+'-tn320.png'}}">
         <ion-card-content class="cardcontent">
@@ -34,7 +33,6 @@
 
         </ion-card-content>
       </ion-card>
-    </ion-item>
   </ion-list>
 
   <!--ion-list-- *ngFor="let files of filesArray" (click)="itemTapped($event, item, files.file_id, files.title, files.description, files.user_id, files.filename, files.time_added)">

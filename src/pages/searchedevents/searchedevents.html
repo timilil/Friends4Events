@@ -13,14 +13,21 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background">
   <ion-list>
-  <ion-card *ngFor="let media of anotherArray">
-    <div *ngIf="media.file">
+    <ion-card class="flexcard" *ngFor="let file of searchedFiles | reverse"
+              (click)="itemTapped($event, item, file.file_id, file.title, file.description, file.user_id, file.filename, file.time_added)">
+      <img class="image"
+           src="http://media.mw.metropolia.fi/wbma/uploads/{{file.filename.split('.')[0]+'-tn320.png'}}">
+      <ion-card-content class="cardcontent">
+        <ion-card-title>
+          {{file.title}}
+        </ion-card-title>
+        <p class="ellipsis">
+          {{file.description}}
+        </p>
 
-        <h2>{{media.file.tag}}</h2>
-        <p>{{media.file}}</p>
-    </div>
-  </ion-card>
+      </ion-card-content>
+    </ion-card>
   </ion-list>
 </ion-content>

@@ -80,7 +80,7 @@ export class EventPage {
     this.mediaProvider.getLikesByFileId(this.fileID).subscribe(response => {
       this.likesArray = response;
       this.likesArray.forEach(data => {
-        if (data.file_id == this.fileID) {
+        if (data.user_id == this.userID) {
           this.isLiked = true;
         }
       });

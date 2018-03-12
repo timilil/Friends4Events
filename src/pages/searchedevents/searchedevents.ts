@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {MediaProvider} from '../../providers/media/media';
+import {EventPage} from '../event/event';
+import {LoginPage} from '../login/login';
 
 /**
  * Generated class for the SearchedeventsPage page.
@@ -41,6 +43,23 @@ export class SearchedeventsPage {
         }
       });
     });
+  }
+
+  itemTapped(event, item, file_id, title, description, user_id, filename, time_added) {
+    // push the params to EventPage
+    if (localStorage.getItem('token') != null) {
+      this.navCtrl.push(EventPage, {
+        item: item,
+        file_id: file_id,
+        title: title,
+        description: description,
+        user_id: user_id,
+        filename: filename,
+        time_added: time_added
+      });
+    } else {
+      this.navCtrl.setRoot(LoginPage);
+    }
   }
 
   ionViewDidLoad() {

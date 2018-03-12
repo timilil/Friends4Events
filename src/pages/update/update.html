@@ -16,16 +16,24 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background">
   <form (submit)="updateData()">
+    <h5>Change username</h5>
     <ion-item>
       <ion-input type="text" [(ngModel)]="updateUser.username" placeholder="Username" name="username"></ion-input>
     </ion-item>
     <br>
+    <h5>Change password</h5>
     <ion-item>
       <ion-input type="password" [(ngModel)]="updateUser.password" placeholder="Password" name="password"></ion-input>
     </ion-item>
     <br>
+    <h5>Type password again</h5>
+    <ion-item>
+      <ion-input type="password" [(ngModel)]="confirmPass" placeholder="Confirm password" name="password"></ion-input>
+    </ion-item>
+    <br>
+    <h5>Change email</h5>
     <ion-item>
       <ion-input type="text" [(ngModel)]="updateUser.email" placeholder="Email" name="email"></ion-input>
     </ion-item>

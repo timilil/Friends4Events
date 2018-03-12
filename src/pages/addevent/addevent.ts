@@ -5,6 +5,7 @@ import {MediaProvider} from '../../providers/media/media';
 import {Tags} from '../../interfaces/tags';
 import {ListPage} from '../list/list';
 import {HttpErrorResponse} from '@angular/common/http';
+import {ProfilePage} from '../profile/profile';
 
 /**
  * Generated class for the AddeventPage page.
@@ -51,7 +52,7 @@ export class AddeventPage {
       this.picData = response;
       this.tag.file_id = this.picData.file_id;
       this.tag.tag = 'event';
-      this.navCtrl.setRoot(ListPage);
+      this.navCtrl.setRoot(ProfilePage);
       this.mediaProvider.postTag(this.tag).subscribe(response => {
         console.log(response);
       });

@@ -36,12 +36,13 @@ export class UploadprofilepicPage {
   canvas: any;
   picData: any;
   userData: any;
+  userName: string;
   oldProfPic: any;
   lastImage: string = null;
 
   tag: Tags = {
     file_id: null,
-    tag: '',
+    tag: this.userName,
   };
 
   loading = this.loadingCtrl.create({
@@ -50,7 +51,9 @@ export class UploadprofilepicPage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private mediaProvider: MediaProvider, private camera: Camera, private loadingCtrl: LoadingController, private renderer: Renderer2, public editorProvider: EditorProvider, private transfer: Transfer, private file: File, private filePath: FilePath, public actionSheetCtrl: ActionSheetController, public toastCtrl: ToastController, public platform: Platform,) {
+    this.userName = this.navParams.get('username');
   }
+
 
   public presenActionSheer(){
     let actionSheet = this.actionSheetCtrl.create({
@@ -148,7 +151,7 @@ export class UploadprofilepicPage {
           this.picData = response;
           this.tag.file_id = this.picData.file_id;
           //const fileId = response['file_id'];
-          this.mediaProvider.getFileWithSpecificTag(this.tag.tag).
+          this.mediaProvider.getFileWithSpecificTag(this.userName).
             subscribe(response => {
               this.oldProfPic = response;
               console.log(response);
@@ -162,6 +165,7 @@ export class UploadprofilepicPage {
                   });
               }
             });
+
           this.mediaProvider.postTag(this.tag).subscribe(response => {
             console.log(response);
             setTimeout(() => {
@@ -180,6 +184,8 @@ export class UploadprofilepicPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad UploadprofilepicPage');
     this.canvas = this.canvasRef.nativeElement;
+    console.log(this.userName);
+    this.tag.tag = this.userName;
   }
 
 }

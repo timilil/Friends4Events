@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background">
 
   <h2>Add events:</h2>
   <form class="center" (submit)="startUpload()">
@@ -23,7 +23,9 @@
       <ion-input type="text" [(ngModel)]="media.title" placeholder="Title" name="title"></ion-input>
     </ion-item>
     <br>
-    <ion-textarea [(ngModel)]="media.description" placeholder="Enter a description" name="description"></ion-textarea>
+    <ion-item>
+      <ion-textarea [(ngModel)]="media.description" placeholder="Enter a description" name="description"></ion-textarea>
+    </ion-item>
     <br>
     <button class="uploadButton" ion-button block type="submit">Upload</button>
   </form>

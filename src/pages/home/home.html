@@ -11,7 +11,7 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="none"
                            style="opacity: 0.5"
-                           refreshingSpinner="circles">
+                           refreshingSpinner="crescent">
     </ion-refresher-content>
   </ion-refresher>
 
@@ -24,13 +24,22 @@
       </ion-slide>
     </ion-slides>
   -->
+  <div *ngIf="mediaProvider.logged">
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="search.title" placeholder="Search" name="searchtitle"></ion-input>
+      <button ion-button item-right clear (click)="searchEvent()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-item>
+    <br>
+  </div>
+
   <ion-slides autoplay="" pager="true" loop="true" speed="500">
-    <div *ngFor="let image of latestImgsArray; let i = index;">
+    <div *ngFor="let image of latestImgsArray | reverse; let i = index;">
       <ion-slide *ngIf="i < 5"
                  (click)="itemTapped($event, image.file_id, image.title, image.description, image.user_id, image.filename, image.time_added)">
         <img class="slidingImg"
              src="http://media.mw.metropolia.fi/wbma/uploads/{{image.filename.split('.')[0]+'-tn320.png'}}">
-        <h5>{{image.description}}</h5>
       </ion-slide>
     </div>
   </ion-slides>
@@ -65,13 +74,6 @@
       </ion-card>
     </div>
 
-  </div>
-  <div *ngIf="mediaProvider.logged">
-    <ion-item>
-      <ion-input type="text" [(ngModel)]="search.title" placeholder="Title" name="searchtitle"></ion-input>
-    </ion-item>
-    <br>
-    <button ion-button block (click)="searchEvent()">Search events</button>
   </div>
 </ion-content>
 

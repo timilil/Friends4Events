@@ -38,7 +38,7 @@ export class ListPage {
 
     if (val && val.trim() != '') {
 
-      this.searchItems = this.searchItems.filter((item) => {
+      this.searchItems = this.searchItems.reverse().filter((item) => {
         console.log(item.title);
         return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
       });

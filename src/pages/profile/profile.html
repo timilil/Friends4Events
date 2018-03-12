@@ -28,15 +28,23 @@
       <h2>Username: {{userName}}</h2>
       <h3>Email: {{userEmail}}</h3>
       <h3>Full name: {{fullName}}</h3>
+      <button ion-fab color="primary" (click)="redirectToUpdatePage()">
+          <ion-icon name="md-cog"></ion-icon>
+      </button>
     </div>
   </form>
   <div class="information2">
     <h2>Username: {{userName}}</h2>
     <h3>Email: {{userEmail}}</h3>
     <h3>Full name: {{fullName}}</h3>
+    <button ion-fab color="primary" (click)="redirectToUpdatePage()">
+      <ion-icon name="md-cog"></ion-icon>
+    </button>
   </div>
   <br>
-  <h2>My events</h2>
+  <div class="eventsDiv">
+    <h2>My events ({{userEvents.length}})</h2>
+  </div>
   <ion-list *ngFor="let event of userEvents">
     <ion-card class="flexcard">
       <img class="image" src="http://media.mw.metropolia.fi/wbma/uploads/{{event.filename.split('.')[0]+'-tn320.png'}}" (click)="itemTapped($event, item, event.file_id, event.title, event.description, event.user_id, event.filename, event.time_added)"/>
@@ -109,7 +117,9 @@
     </ion-card>
   </ion-list>
 
-  <h2>My signed up events</h2>
+  <div class="eventsDiv">
+    <h2>My signed up events ({{mySigned.length}})</h2>
+  </div>
   <ion-list *ngFor="let event of mySigned">
 
     <ion-card class="flexcard">
