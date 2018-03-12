@@ -209,10 +209,10 @@ export class EventPage {
       this.loggedUserId = response['user_id'];
       console.log(this.loggedUserId);
     });
-    //console.log(this.fileID);
+    console.log(this.fileID);
     //console.log(this.title);
     //console.log(this.description);
-    console.log(this.userID);
+    console.log("moi"+this.userID);
     //console.log(this.fileName);
     this.getUsernameByUserID();
     this.getLikesByFileID();
