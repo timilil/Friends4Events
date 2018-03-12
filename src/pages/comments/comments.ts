@@ -74,7 +74,6 @@ export class CommentsPage {
     });
   }
 
-  // MIKSI TÄMÄ EI TOIMI
   getProfilePicByUserName (){
     console.log(this.allComments);
     this.allComments.map(profile => {
@@ -106,11 +105,12 @@ export class CommentsPage {
     });
   }
 
-  redirectToUserThatPosted(event, userName, email, userid) {
+  redirectToUserThatPosted(event, userName, email, userid, fullname) {
     this.navCtrl.push(ViewprofilePage, {
       username: userName,
       user_id: userid,
       email: email,
+      fullname: fullname
     });
   }
 

@@ -19,6 +19,7 @@ export class ViewprofilePage {
   userId: number;
   userName: string;
   userEmail: string;
+  fullName: string;
   profilePic: any;
   profilePicName: string;
 
@@ -26,6 +27,7 @@ export class ViewprofilePage {
     this.userName = this.navParams.get('username');
     this.userEmail = this.navParams.get('email');
     this.userId = this.navParams.get('user_id');
+    this.fullName = this.navParams.get('fullname');
   }
 
   ionViewDidLoad() {
@@ -33,6 +35,7 @@ export class ViewprofilePage {
     console.log(this.userEmail);
     console.log(this.userName);
     console.log(this.userId);
+    console.log(this.fullName);
     this.getProfilePic();
   }
 

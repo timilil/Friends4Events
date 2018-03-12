@@ -38,13 +38,9 @@ export class EventPage {
   userWhoPostedEmail: string;
   count: number;
   loggedUserId: number;
-  likeIdArray: Array<{ favourite_id: number, file_id: number, user_id: number }> = [];
-  signedLength: number;
-  signedUser: string;
-  signedUserId: number;
-  signedUserEmail: string;
   profilePic: any;
   profilePicName: string;
+  fullName: string;
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
@@ -56,6 +52,7 @@ export class EventPage {
     this.userID = this.navParams.get('user_id');
     this.fileName = this.navParams.get('filename');
     this.timeAdded = this.navParams.get('time_added');
+    this.fullName = this.navParams.get('fullname');
   }
 
   getUsernameByUserID() {
@@ -120,6 +117,7 @@ export class EventPage {
                 email: response['email'],
                 username: response['username'],
                 user_id: response['user_id'],
+                fullname: response['full_name']
               });
             },
           };
@@ -131,10 +129,14 @@ export class EventPage {
   }
 
   redirectToUserThatPosted() {
-    this.navCtrl.push(ViewprofilePage, {
-      username: this.userName,
-      user_id: this.userID,
-      email: this.userWhoPostedEmail,
+    this.mediaProvider.getUsernameByUserId(this.userID).subscribe(response => {
+      console.log(response);
+      this.navCtrl.push(ViewprofilePage, {
+        username: response['username'],
+        user_id: response['user_id'],
+        email: response['email'],
+        fullname: response['full_name']
+      });
     });
   }
 

@@ -52,6 +52,13 @@ h3 {
   float: right;
 }
 
+.box{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
 @media screen and (max-width: 480px) {
   .information {
     visibility: hidden;
