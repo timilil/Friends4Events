@@ -34,7 +34,7 @@
     <br>
   </div>
 
-  <ion-slides autoplay="" pager="true" loop="true" speed="500">
+  <ion-slides autoplay="3000" pager="true" loop="true" speed="500">
     <div *ngFor="let image of latestImgsArray | reverse; let i = index;">
       <ion-slide *ngIf="i < 5"
                  (click)="itemTapped($event, image.file_id, image.title, image.description, image.user_id, image.filename, image.time_added)">
