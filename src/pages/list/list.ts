@@ -57,11 +57,13 @@ export class ListPage {
       this.filesArray = response;
       this.initializeItems();
     });
-    this.mediaProvider.getUserData().subscribe(response => {
-      console.log(response);
-      this.loggedUserId = response['user_id'];
-      console.log(this.loggedUserId);
-    });
+    if (localStorage.getItem('token')){
+      this.mediaProvider.getUserData().subscribe(response => {
+        console.log(response);
+        this.loggedUserId = response['user_id'];
+        console.log(this.loggedUserId);
+      });
+    }
   }
 
   itemTapped(event, item, file_id, title, description, user_id, filename, time_added) {

@@ -133,4 +133,33 @@ export class HomePage {
       this.navCtrl.setRoot(LoginPage);
     }
   }
+
+  showAboutUs(){
+    if (document.getElementById("about").classList.contains('ellipsis')) {
+      document.getElementById("about").classList.remove('ellipsis');
+    }
+    else {
+      document.getElementById("about").classList.add('ellipsis');
+    }
+  }
+
+  showWhoIsItFor(){
+    if (document.getElementById("for").classList.contains('ellipsis')) {
+      document.getElementById("for").classList.remove('ellipsis');
+    }
+    else {
+      document.getElementById("for").classList.add('ellipsis');
+    }
+  }
+
+
+  showUsage(){
+    if (document.getElementById("usage").classList.contains('ellipsis')) {
+      document.getElementById("usage").classList.remove('ellipsis');
+    }
+    else {
+      document.getElementById("usage").classList.add('ellipsis');
+    }
+  }
+
 }
