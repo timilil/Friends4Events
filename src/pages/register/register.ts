@@ -1,17 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {MediaProvider} from '../../providers/media/media';
 import {HttpErrorResponse} from '@angular/common/http';
 import {User} from '../../interfaces/user';
 import {LoginPage} from '../login/login';
-
-
-/**
- * Generated class for the RegisterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -26,15 +18,18 @@ export class RegisterPage {
     email: '',
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private mediaProvider: MediaProvider) {
+  constructor(
+    public navCtrl: NavController, public navParams: NavParams,
+    private mediaProvider: MediaProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
   }
-  register(){
+
+  register() {
     this.mediaProvider.register(this.user).subscribe(response => {
-      console.log(response);
+      //console.log(response);
       this.mediaProvider.username = this.user.username;
       this.mediaProvider.password = this.user.password;
       this.navCtrl.setRoot(LoginPage);
@@ -42,6 +37,5 @@ export class RegisterPage {
       console.log(error);
     });
   }
-
 
 }

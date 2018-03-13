@@ -1,18 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Media} from '../../interfaces/media';
 import {MediaProvider} from '../../providers/media/media';
 import {Tags} from '../../interfaces/tags';
-import {ListPage} from '../list/list';
 import {HttpErrorResponse} from '@angular/common/http';
 import {ProfilePage} from '../profile/profile';
-
-/**
- * Generated class for the AddeventPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -34,7 +26,9 @@ export class AddeventPage {
     tag: '',
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private mediaProvider: MediaProvider) {
+  constructor(
+    public navCtrl: NavController, public navParams: NavParams,
+    private mediaProvider: MediaProvider) {
   }
 
   startUpload() {
@@ -48,7 +42,6 @@ export class AddeventPage {
     formData.append('file', this.file);
     // send FormData object to API
     this.mediaProvider.getUploadData(formData).subscribe(response => {
-      console.log(response);
       this.picData = response;
       this.tag.file_id = this.picData.file_id;
       this.tag.tag = 'event';
@@ -62,7 +55,6 @@ export class AddeventPage {
   }
 
   setFile(evt) {
-    console.log(evt.target.files[0]);
     this.file = evt.target.files[0];
   }
 

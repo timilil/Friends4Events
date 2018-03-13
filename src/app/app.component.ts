@@ -1,36 +1,37 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import {Component, ViewChild} from '@angular/core';
+import {Nav, Platform} from 'ionic-angular';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import {HomePage} from '../pages/home/home';
+import {ListPage} from '../pages/list/list';
 import {LoginPage} from '../pages/login/login';
 import {ProfilePage} from '../pages/profile/profile';
 import {LogoutPage} from '../pages/logout/logout';
 import {MediaProvider} from '../providers/media/media';
-import {UpdatePage} from '../pages/update/update';
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private mediaProvider: MediaProvider) {
+  constructor(
+    public platform: Platform, public statusBar: StatusBar,
+    public splashScreen: SplashScreen, private mediaProvider: MediaProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Events', component: ListPage },
-      { title: 'Login', component: LoginPage },
-      { title: 'Profile', component: ProfilePage },
-      { title: 'Logout', component: LogoutPage }
+      {title: 'Home', component: HomePage},
+      {title: 'Events', component: ListPage},
+      {title: 'Login', component: LoginPage},
+      {title: 'Profile', component: ProfilePage},
+      {title: 'Logout', component: LogoutPage},
     ];
 
   }

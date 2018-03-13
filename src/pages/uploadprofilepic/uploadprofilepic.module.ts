@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
-import { UploadprofilepicPage } from './uploadprofilepic';
+import {NgModule} from '@angular/core';
+import {IonicPageModule} from 'ionic-angular';
+import {UploadprofilepicPage} from './uploadprofilepic';
 
 @NgModule({
   declarations: [
@@ -10,4 +10,5 @@ import { UploadprofilepicPage } from './uploadprofilepic';
     IonicPageModule.forChild(UploadprofilepicPage),
   ],
 })
-export class UploadprofilepicPageModule {}
+export class UploadprofilepicPageModule {
+}

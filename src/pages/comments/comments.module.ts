@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
-import { CommentsPage } from './comments';
+import {NgModule} from '@angular/core';
+import {IonicPageModule} from 'ionic-angular';
+import {CommentsPage} from './comments';
 
 @NgModule({
   declarations: [
@@ -10,4 +10,5 @@ import { CommentsPage } from './comments';
     IonicPageModule.forChild(CommentsPage),
   ],
 })
-export class CommentsPageModule {}
+export class CommentsPageModule {
+}

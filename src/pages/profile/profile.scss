@@ -17,7 +17,7 @@ h3 {
   color: #777777;
 }
 
-.profile-avatar, .profile-avatar2{
+.profile-avatar, .profile-avatar2 {
   float: left;
   width: 15rem;
   height: 15rem;
@@ -29,7 +29,6 @@ h3 {
 .profile-avatar:hover {
   cursor: pointer;
 }
-
 
 .information {
   margin-top: 4rem;
@@ -52,7 +51,7 @@ h3 {
   float: right;
 }
 
-.box{
+.box {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -71,15 +70,15 @@ h3 {
     height: 10rem;
     margin: 1.5rem;
   }
-  .eventsDiv{
+  .eventsDiv {
     width: 100%;
     margin: 1.5rem;
   }
 
   .center {
     display: flex;
-    flex-direction:column;
-    align-items:center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .profile-avatar {

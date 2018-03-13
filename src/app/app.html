@@ -31,16 +31,11 @@
         {{pages[4].title}}
         <ion-icon class="ion-ios-arrow-forward"></ion-icon>
       </button>
-      <!--<button menuClose ion-item (click)="openPage(pages[4])">
-        {{pages[4].title}}
-        <ion-icon class="ion-ios-arrow-forward"></ion-icon>
-      </button>-->
     </ion-list>
 
   </ion-content>
 
 </ion-menu>
-
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

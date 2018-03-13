@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
-import { LogoutPage } from './logout';
+import {NgModule} from '@angular/core';
+import {IonicPageModule} from 'ionic-angular';
+import {LogoutPage} from './logout';
 
 @NgModule({
   declarations: [
@@ -10,4 +10,5 @@ import { LogoutPage } from './logout';
     IonicPageModule.forChild(LogoutPage),
   ],
 })
-export class LogoutPageModule {}
+export class LogoutPageModule {
+}

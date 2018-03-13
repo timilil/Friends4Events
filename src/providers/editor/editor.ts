@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 import {EXIF} from 'exif-js';
 import {File, FileEntry} from '@ionic-native/file';
-
 
 /*
   Generated class for the EditorProvider provider.
@@ -20,7 +19,6 @@ export class EditorProvider {
   pixels: any;
   numPixels: number;
 
-
   constructor(public http: HttpClient, private file: File) {
     console.log('Hello EditorProvider Provider');
   }
@@ -29,7 +27,6 @@ export class EditorProvider {
     this.canvas = c;
     this.context = this.canvas.getContext('2d');
     this.image = i;
-    // console.log(this.image);
   };
 
   setFile(imData): void {
@@ -50,7 +47,6 @@ export class EditorProvider {
   };
 
   resetImage() {
-    // console.log(this.image);
     this.canvas.height = this.image.height;
     this.canvas.width = this.image.width;
 
@@ -61,6 +57,5 @@ export class EditorProvider {
     this.pixels = this.imageData.data;
     this.numPixels = this.imageData.width * this.imageData.height;
   };
-
 
 }

@@ -16,14 +16,6 @@
   </ion-refresher>
 
   <h2>Friends 4 Events</h2>
-  <!--
-    <ion-slides autoplay="3000" pager="true" loop="true" speed="500">
-      <ion-slide *ngFor="let image of latestImgsArray" (click)="itemTapped($event, image.file_id, image.title, image.description, image.user_id, image.filename, image.time_added)">
-        <img class="slidingImg" src="http://media.mw.metropolia.fi/wbma/uploads/{{image.filename.split('.')[0]+'-tn320.png'}}">
-        <h5>{{image.description}}</h5>
-      </ion-slide>
-    </ion-slides>
-  -->
   <div *ngIf="mediaProvider.logged">
     <ion-item>
       <ion-input type="text" [(ngModel)]="search.title" placeholder="Search" name="searchtitle"></ion-input>
@@ -34,7 +26,7 @@
     <br>
   </div>
 
-  <ion-slides autoplay="3000" pager="true" loop="true" speed="500">
+  <ion-slides autoplay="" pager="true" loop="true" speed="500">
     <div *ngFor="let image of latestImgsArray | reverse; let i = index;">
       <ion-slide *ngIf="i < 5"
                  (click)="itemTapped($event, image.file_id, image.title, image.description, image.user_id, image.filename, image.time_added)">
@@ -52,8 +44,10 @@
         </ion-card-header>
         <ion-card-content>
           <p id="about" class="ellipsis">
-            Friends 4 Events is an easy way to advertise and meet people with the same interests at events you both enjoy.
-            Users can advertise events where they want to go and ask someone to join them and share the experience with somebody.
+            Friends 4 Events is an easy way to advertise and meet people with the same interests at events you both
+            enjoy.
+            Users can advertise events where they want to go and ask someone to join them and share the experience with
+            somebody.
           </p>
         </ion-card-content>
       </ion-card>
@@ -76,11 +70,14 @@
           <p id="usage" class="ellipsis">
             At first you must make your own profile. Open the menu at the top-left corner -> click Login -> Register ->
             fill the required columns and then click the Register button below to confirm,
-            then you can contact the creators of the advertisements you are interest into or add your own advertisement of an event for the new contacts.
+            then you can contact the creators of the advertisements you are interest into or add your own advertisement
+            of an event for the new contacts.
             All advertisements are found at the Events section.<br><br>
-            If you find an event you want to go, comment to the event, there you can ask questions about the event and for example, make plans where to meet.
+            If you find an event you want to go, comment to the event, there you can ask questions about the event and
+            for example, make plans where to meet.
             If you want to make your own advertisement, go to your profile page and click the plus mark below ->
-            upload an image about the event then give a title and a description to it and then click the Upload button to publish the advertisement.
+            upload an image about the event then give a title and a description to it and then click the Upload button
+            to publish the advertisement.
             After that, you wait other users to contact you, all your own events will be shown in your own profile page.
           </p>
         </ion-card-content>

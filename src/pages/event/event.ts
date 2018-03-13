@@ -6,14 +6,6 @@ import {
 import {MediaProvider} from '../../providers/media/media';
 import {CommentsPage} from '../comments/comments';
 import {ViewprofilePage} from '../viewprofile/viewprofile';
-import {HttpErrorResponse} from '@angular/common/http';
-
-/**
- * Generated class for the EventPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -53,12 +45,11 @@ export class EventPage {
     this.fileName = this.navParams.get('filename');
     this.timeAdded = this.navParams.get('time_added');
     this.fullName = this.navParams.get('fullname');
-    this.loggedUserId = this.navParams.get('loggeduserid')
+    this.loggedUserId = this.navParams.get('loggeduserid');
   }
 
   getUsernameByUserID() {
     this.mediaProvider.getUsernameByUserId(this.userID).subscribe(response => {
-      //console.log(response);
       this.userName = response['username'];
       this.userWhoPostedEmail = response['email'];
     });
@@ -73,7 +64,6 @@ export class EventPage {
     });
   }
 
-
   checkIfLiked() {
     this.mediaProvider.getLikesByFileId(this.fileID).subscribe(response => {
       this.likesArray = response;
@@ -84,7 +74,6 @@ export class EventPage {
       });
     });
   }
-
 
   getCommentsAmountByFileId() {
     this.mediaProvider.getCommentsByFileId(this.fileID).subscribe(response => {
@@ -101,16 +90,9 @@ export class EventPage {
     this.mediaProvider.getLikesByFileId(this.fileID).subscribe(response => {
       //console.log(response);
       this.likes = response;
-      console.log(this.likes);
-      this.likes = response;
       this.likes.map(like => {
         const userID = like.user_id;
         this.mediaProvider.getUsernameByUserId(userID).subscribe(response => {
-          console.log(response);
-          //comment.user = response;
-          //this.signedUser = response['username'];
-          //this.signedUserEmail = response['email'];
-          //this.signedUserId = response['user_id'];
           let button = {
             text: response['username'],
             handler: () => {
@@ -118,25 +100,25 @@ export class EventPage {
                 email: response['email'],
                 username: response['username'],
                 user_id: response['user_id'],
-                fullname: response['full_name']
+                fullname: response['full_name'],
               });
             },
           };
           actionsheet.addButton(button);
         });
-      })
+      });
     });
     actionsheet.present();
   }
 
   redirectToUserThatPosted() {
     this.mediaProvider.getUsernameByUserId(this.userID).subscribe(response => {
-      console.log(response);
+      //console.log(response);
       this.navCtrl.push(ViewprofilePage, {
         username: response['username'],
         user_id: response['user_id'],
         email: response['email'],
-        fullname: response['full_name']
+        fullname: response['full_name'],
       });
     });
   }
@@ -157,47 +139,8 @@ export class EventPage {
     });
   }
 
-  /*
-
-  itemClick() {
-      this.getLikesByFileID();
-      console.log("1 this"+this.isLiked);
-      for (let i = 0; i < this.likes.length; i++) {
-        //this.likeIdArray.push(this.likes[i]);
-        //console.log(this.loggedUserId);
-        //console.log(this.likes[i].user_id);
-        if (this.loggedUserId == this.likes[i].user_id) {
-          this.isLiked = true;
-          break;
-        }
-      }
-      console.log("2 this"+ this.isLiked);
-      if (!this.isLiked) {
-        this.mediaProvider.like(this.fileID).subscribe(response => {
-          console.log(response);
-          this.likeamount++;
-        }, (error: HttpErrorResponse) => {
-          console.log(error.error.message);
-        });
-        console.log("3"+this.isLiked);
-      }
-      else if (this.isLiked) {
-        this.mediaProvider.unLike(this.fileID).subscribe(response => {
-          console.log(response);
-          this.likeamount--;
-        }, (error: HttpErrorResponse) => {
-          console.log(error.error.message);
-        });
-      }
-      this.isLiked = !this.isLiked;
-      console.log("4"+this.isLiked);
-    }
-
-  * */
-
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
-
     setTimeout(() => {
       console.log('Async operation has ended');
       refresher.complete();
@@ -206,20 +149,14 @@ export class EventPage {
 
   ionViewDidLoad() {
     this.mediaProvider.getUserData().subscribe(response => {
-      console.log(response);
+      //console.log(response);
       this.loggedUserId = response['user_id'];
-      console.log(this.loggedUserId);
     });
-    console.log(this.fileID);
-    //console.log(this.title);
-    //console.log(this.description);
-    //console.log(this.userID);
-    //console.log(this.fileName);
     this.getUsernameByUserID();
     this.getLikesByFileID();
     this.getCommentsAmountByFileId();
     this.checkIfLiked();
-    this.getProfilePic()
+    this.getProfilePic();
   }
 
   itemTapped(event) {
@@ -230,17 +167,13 @@ export class EventPage {
 
   getProfilePic() {
     this.mediaProvider.getUsernameByUserId(this.userID).subscribe(response => {
-      console.log(response['username']);
+      //console.log(response['username']);
       this.mediaProvider.getFileWithSpecificTag(response['username']).
         subscribe(response => {
-          console.log(response);
+          //console.log(response);
           this.profilePic = response;
           if (this.profilePic.length != 0) {
-            console.log(this.profilePic);
-            console.log(this.profilePic[0].file_id);
-            console.log(this.profilePic[0].filename);
             this.profilePicName = this.profilePic[0].filename;
-            console.log(this.profilePicName);
           }
         });
     });

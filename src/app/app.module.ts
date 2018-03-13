@@ -1,14 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import {BrowserModule} from '@angular/platform-browser';
+import {ErrorHandler, NgModule} from '@angular/core';
+import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import {MyApp} from './app.component';
+import {HomePage} from '../pages/home/home';
+import {ListPage} from '../pages/list/list';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { MediaProvider } from '../providers/media/media';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
+import {MediaProvider} from '../providers/media/media';
 import {ProfilePage} from '../pages/profile/profile';
 import {LoginPage} from '../pages/login/login';
 import {RegisterPage} from '../pages/register/register';
@@ -20,16 +20,14 @@ import {LogoutPage} from '../pages/logout/logout';
 import {SearchedeventsPage} from '../pages/searchedevents/searchedevents';
 import {ReversePipe} from '../pipes/reverse/reverse';
 import {TimePipe} from '../pipes/time/time';
-import { Camera } from '@ionic-native/camera';
-import { Transfer } from '@ionic-native/transfer';
-import { FilePath } from '@ionic-native/file-path'
-import { EditorProvider } from '../providers/editor/editor';
+import {Camera} from '@ionic-native/camera';
+import {Transfer} from '@ionic-native/transfer';
+import {FilePath} from '@ionic-native/file-path';
+import {EditorProvider} from '../providers/editor/editor';
 import {File} from '@ionic-native/file';
 import {AddeventPage} from '../pages/addevent/addevent';
 import {UploadprofilepicPage} from '../pages/uploadprofilepic/uploadprofilepic';
 import {UpdatePage} from '../pages/update/update';
-
-
 
 @NgModule({
   declarations: [
@@ -48,12 +46,12 @@ import {UpdatePage} from '../pages/update/update';
     TimePipe,
     AddeventPage,
     UploadprofilepicPage,
-    UpdatePage
+    UpdatePage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -70,7 +68,7 @@ import {UpdatePage} from '../pages/update/update';
     SearchedeventsPage,
     AddeventPage,
     UploadprofilepicPage,
-    UpdatePage
+    UpdatePage,
   ],
   providers: [
     StatusBar,
@@ -82,7 +80,8 @@ import {UpdatePage} from '../pages/update/update';
     EditorProvider,
     File,
     Transfer,
-    FilePath
-  ]
+    FilePath,
+  ],
 })
-export class AppModule {}
+export class AppModule {
+}

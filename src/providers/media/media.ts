@@ -16,41 +16,12 @@ export class MediaProvider {
   password: string;
   email: string;
   status: string;
-  isLiked: boolean;
   apiUrl = 'http://media.mw.metropolia.fi/wbma';
   nav = this.app.getActiveNav();
   logged = false;
 
   constructor(private http: HttpClient, public app: App) {
   }
-
-  /*
-  public login() {
-    console.log('uname: ' + this.username);
-    console.log('pwd: ' + this.password);
-
-    const body = {
-      username: this.username,
-      password: this.password,
-    };
-
-    // this is optional
-    const settings = {
-      headers: new HttpHeaders().set('Content-Type', 'application/json'),
-    };
-    this.http.post(this.apiUrl + '/login', body, settings).
-      subscribe(response => {
-        console.log(response['token']);
-        localStorage.setItem('token', response['token']);
-        //this.router.navigate(['front']);
-        //this.nav.setRoot(HomePage);
-        this.logged = true;
-      }, (error: HttpErrorResponse) => {
-        console.log(error.error.message);
-        this.status = error.error.message;
-      });
-  }
-*/
 
   login() {
     const body = {
@@ -70,11 +41,11 @@ export class MediaProvider {
   isLogged() {
     if (localStorage.getItem('token') != null) {
       this.logged = true;
-      console.log(this.logged);
+      //console.log(this.logged);
     }
     else {
       this.logged = false;
-      console.log(this.logged);
+      //console.log(this.logged);
     }
   }
 
@@ -97,7 +68,7 @@ export class MediaProvider {
       headers: new HttpHeaders().set('x-access-token',
         localStorage.getItem('token')),
     };
-    return this.http.put(this.apiUrl + '/users', data, settings)
+    return this.http.put(this.apiUrl + '/users', data, settings);
   }
 
   getUploadData(formData) {
@@ -114,22 +85,21 @@ export class MediaProvider {
     return this.http.get(this.apiUrl + '/media?start=&limit=10');
   }
 
-  get5LatestImages(){
+  get5LatestImages() {
     return this.http.get(this.apiUrl + '/media?start=0&limit=5');
   }
 
-  getFileByFileId(fileId){
+  getFileByFileId(fileId) {
     const settings = {
       headers: new HttpHeaders().set('x-access-token',
         localStorage.getItem('token')),
     };
-    return this.http.get(this.apiUrl + '/media/'+fileId);
+    return this.http.get(this.apiUrl + '/media/' + fileId);
   }
 
   getTagsByCurrentUser(userid) {
-    return this.http.get(this.apiUrl + '/tags/file/'+userid);
+    return this.http.get(this.apiUrl + '/tags/file/' + userid);
   }
-
 
   deleteFile(id) {
     const settings = {
@@ -149,7 +119,6 @@ export class MediaProvider {
   }
 
   commentEvent(comment) {
-    console.log(comment);
     const settings = {
       headers: new HttpHeaders().set('x-access-token',
         localStorage.getItem('token')),
@@ -166,11 +135,9 @@ export class MediaProvider {
       headers: new HttpHeaders().set('x-access-token',
         localStorage.getItem('token')),
     };
-
     const body = {
       file_id: file_id,
     };
-
     return this.http.post(this.apiUrl + '/favourites', body, settings);
   }
 
@@ -179,7 +146,8 @@ export class MediaProvider {
       headers: new HttpHeaders().set('x-access-token',
         localStorage.getItem('token')),
     };
-    return this.http.delete(this.apiUrl + '/favourites/file/' + file_id, settings);
+    return this.http.delete(this.apiUrl + '/favourites/file/' + file_id,
+      settings);
   }
 
   getLikesByFileId(fileid) {
@@ -206,7 +174,6 @@ export class MediaProvider {
     return this.http.get(this.apiUrl + '/tags/' + tag);
   }
 
-
   deleteTag(tag_id) {
     const settings = {
       headers: new HttpHeaders().set('x-access-token',
@@ -224,7 +191,6 @@ export class MediaProvider {
   }
 
   searchMedia(media) {
-    console.log(media);
     const settings = {
       headers: new HttpHeaders().set('x-access-token',
         localStorage.getItem('token')),
@@ -232,15 +198,12 @@ export class MediaProvider {
     return this.http.post(this.apiUrl + '/media/search', media, settings);
   }
 
-  searchTag (tag) {
-    console.log(tag);
-    return this.http.get(this.apiUrl + '/tags/'+ tag);
+  searchTag(tag) {
+    return this.http.get(this.apiUrl + '/tags/' + tag);
   }
 
   tagsByFileId(id) {
-    return this.http.get(this.apiUrl + '/tags/file/'+ id);
+    return this.http.get(this.apiUrl + '/tags/file/' + id);
   }
-
-
 
 }

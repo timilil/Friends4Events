@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 /**
  * Generated class for the ReversePipe pipe.
@@ -13,7 +13,7 @@ export class ReversePipe implements PipeTransform {
    * Takes a value and makes it lowercase.
    */
   transform(value) {
-    if(!value) return;
+    if (!value) return;
     return value.reverse();
   }
 }

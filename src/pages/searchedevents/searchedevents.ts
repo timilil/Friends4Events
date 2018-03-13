@@ -1,15 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {MediaProvider} from '../../providers/media/media';
 import {EventPage} from '../event/event';
 import {LoginPage} from '../login/login';
-
-/**
- * Generated class for the SearchedeventsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -23,7 +16,9 @@ export class SearchedeventsPage {
   thing: any;
   searchedFiles = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private mediaProvider: MediaProvider) {
+  constructor(
+    public navCtrl: NavController, public navParams: NavParams,
+    private mediaProvider: MediaProvider) {
     this.response = navParams.get('response');
     this.searchTag = this.navParams.get('searchTag');
     this.thing = this.navParams.get('thing');
@@ -33,20 +28,20 @@ export class SearchedeventsPage {
     this.thing.forEach(data => {
       this.mediaProvider.tagsByFileId(data.file_id).subscribe(response => {
         if (response != '') {
-          if (response[0].tag == 'event'){
-            console.log(response[0].file_id);
-            this.mediaProvider.getFileByFileId(response[0].file_id).subscribe(response => {
-              this.searchedFiles.push(response);
-              console.log(this.searchedFiles);
-            });
+          if (response[0].tag == 'event') {
+            //console.log(response[0].file_id);
+            this.mediaProvider.getFileByFileId(response[0].file_id).
+              subscribe(response => {
+                this.searchedFiles.push(response);
+              });
           }
         }
       });
     });
   }
 
-  itemTapped(event, item, file_id, title, description, user_id, filename, time_added) {
-    // push the params to EventPage
+  itemTapped(
+    event, item, file_id, title, description, user_id, filename, time_added) {
     if (localStorage.getItem('token') != null) {
       this.navCtrl.push(EventPage, {
         item: item,
@@ -55,7 +50,7 @@ export class SearchedeventsPage {
         description: description,
         user_id: user_id,
         filename: filename,
-        time_added: time_added
+        time_added: time_added,
       });
     } else {
       this.navCtrl.setRoot(LoginPage);
